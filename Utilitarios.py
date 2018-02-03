@@ -38,7 +38,7 @@ def division(numerador,denominador):
     else:
         return float(numerador)/float(denominador)
 
-def cmd_exec(str_cmd,flag_print):
+def cmd_pip(str_cmd,flag_print):
     
     """ Executa comandos PIP. Recebe 2 parametros:
            > str_cmd    - Comando a ser executado;
@@ -55,4 +55,25 @@ def cmd_exec(str_cmd,flag_print):
         print(out)
     if err != '':
         print(err)
+    return proc.returncode
+
+def cmd_exec(str_cmd,flag_print):
+    
+    """ Executa comandos no promt:
+           > str_cmd    - Comando a ser executado;
+           > flag_print - Flag que controla impressão do resultado da execução do comando
+    """
+    
+    proc = Popen(str_cmd , shell=True, stdout=PIPE, stderr=PIPE)
+    out, err = proc.communicate()
+    if flag_print:
+        if platform.python_version()[:1] >= '3':
+            print(out.decode(encoding='windows-1252'))
+        else:
+            print(out)
+    if err != '':
+        if platform.python_version()[:1] >= '3':
+            print(err.decode(encoding='windows-1252'))
+        else:
+            print(err)
     return proc.returncode

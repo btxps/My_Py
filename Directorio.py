@@ -95,6 +95,7 @@ def file_exists(file_path):
 
 
 def scan_dir(path):
+  list_dir=[]
   scan_dir_o = False
   if change_dir(path):
     scan_dir_o = True
@@ -103,12 +104,14 @@ def scan_dir(path):
         for entry in it:
           str_scan=""
           if entry.is_dir():
+            list_dir.append(["D",entry.name])
             str_scan +=" Type - D"
           if entry.is_file():
+            list_dir.append(["F",entry.name])
             str_scan +=" Type - F"
           str_scan += " | Name - "+entry.name
           print(str_scan)
     except: # catch *all* exceptions
       print(sys.exc_info()[0] ," - ",sys.exc_info()[1])
       scan_dir_o = False 
-  return scan_dir_o
+  return scan_dir_o,list_dir
