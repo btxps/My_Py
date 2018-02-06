@@ -1,0 +1,14 @@
+01-01-2018;Ano Novo
+30-03-2018;Sexta Feira Santa
+01-04-2018;Pascoa
+25-04-2018;Dia Liberdade
+01-05-2018;Dia Trabalhador
+10-06-2018;Dia Portugal
+13-06-2018;Santo Antonio
+31-05-2018;Corpo Deus
+15-08-2018;Sr. Assuncao
+05-10-2018;Implantacao Republica
+01-11-2018;Dia Todos Santos
+01-12-2018;Restauracao Independencia
+08-12-2018;Sr. Conceicao
+25-12-2018;Natal
