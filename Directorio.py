@@ -7,7 +7,7 @@
       > Remove Arquivo
 """
 
-import os,sys
+import os,sys,platform
 
 
 def change_dir(path):
@@ -100,18 +100,28 @@ def scan_dir(path):
   if change_dir(path):
     scan_dir_o = True
     try:
-      with os.scandir(path) as it:
-        for entry in it:
-          str_scan=""
-          if entry.is_dir():
-            list_dir.append(["D",entry.name])
+      if platform.python_version()[:1] >= '3':
+        with os.scandir(path) as it:
+          for entry in it:
+            str_scan=""
+            if entry.is_dir():
+              list_dir.append(["D",entry.name])
+              str_scan +=" Type - D"
+            if entry.is_file():
+              list_dir.append(["F",entry.name])
+              str_scan +=" Type - F"
+            str_scan += " | Name - "+entry.name      
+      else:
+        str_scan=""
+        for entry in os.listdir(path):
+          if entry.count(".") == 0:
+            list_dir.append(["D",entry])
             str_scan +=" Type - D"
-          if entry.is_file():
-            list_dir.append(["F",entry.name])
+          else:
+            list_dir.append(["F",entry])
             str_scan +=" Type - F"
-          str_scan += " | Name - "+entry.name
-          print(str_scan)
+          str_scan += " | Name - "+entry
     except: # catch *all* exceptions
       print(sys.exc_info()[0] ," - ",sys.exc_info()[1])
-      scan_dir_o = False 
+      scan_dir_o = False
   return scan_dir_o,list_dir
