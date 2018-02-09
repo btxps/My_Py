@@ -114,7 +114,7 @@ def scan_dir(path):
       else:
         str_scan=""
         for entry in os.listdir(path):
-          if entry.count(".") == 0:
+          if os.path.isdir(path+"\\"+entry):
             list_dir.append(["D",entry])
             str_scan +=" Type - D"
           else:
